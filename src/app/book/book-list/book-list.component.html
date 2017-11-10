@@ -1,0 +1,12 @@
+<h2>Bücher</h2>
+<div
+  *ngFor="let book of books"
+  class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{ book.title }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{ book.subtitle }}</h6>
+    <p class="card-text">{{ book.abstract }}</p>
+    <a [routerLink]="[book.isbn]" class="card-link">Details</a>
+    <a [routerLink]="['edit', book.isbn]" class="card-link">Bearbeiten</a>
+  </div>
+</div>

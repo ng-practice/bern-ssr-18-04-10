@@ -1,18 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {
+  BrowserModule,
+  BrowserTransferStateModule
+} from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    // Add .withServerTransition() to support Universal rendering.
+    // The application ID can be any identifier which is unique on
+    // the page.
+    BrowserModule.withServerTransition({ appId: 'berlin-ssr' }),
+    BrowserTransferStateModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
