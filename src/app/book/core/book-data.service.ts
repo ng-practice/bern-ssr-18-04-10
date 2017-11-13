@@ -15,23 +15,21 @@ const BOOKS_KEY = makeStateKey('books');
 @Injectable()
 export class BookDataService {
   endpoint = 'http://localhost:4730';
-  books: Book[];
 
   constructor(
     private http: HttpClient,
-    private state: TransferState
-  ) {}
+    private state: TransferState) {}
 
   getBooks(): Observable<Book[]> {
-    this.books = this.state.get(BOOKS_KEY, null as any);
+    const books = this.state.get(BOOKS_KEY, null as any);
 
-    if (!this.books) {
-      return this.http
-        .get<Book[]>(`${this.endpoint}/books`)
-        .pipe(tap(books => this.books = books));
+    if (books) {
+      return of(books);
     }
 
-    return of(this.books);
+    return this.http
+      .get<Book[]>(`${this.endpoint}/books`)
+      .pipe(tap(books => this.state.set(BOOKS_KEY, books as any)));
   }
 
   getBookByIsbn(isbn: string): Observable<Book> {
