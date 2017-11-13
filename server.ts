@@ -12,8 +12,6 @@ import { readFileSync } from 'fs';
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
 // Express server
 const app = express();
 

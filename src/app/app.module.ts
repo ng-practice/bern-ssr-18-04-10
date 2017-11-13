@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
-import {
-  BrowserModule,
-  BrowserTransferStateModule
-} from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -16,6 +13,7 @@ import { AppComponent } from './app.component';
     // the page.
     BrowserModule.withServerTransition({ appId: 'berlin-ssr' }),
     BrowserTransferStateModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
