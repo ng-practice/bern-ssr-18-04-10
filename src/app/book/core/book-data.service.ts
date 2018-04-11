@@ -10,43 +10,28 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { _throw } from 'rxjs/observable/throw';
 import { of } from 'rxjs/observable/of';
 
-const BOOKS_KEY = makeStateKey('books');
-
 @Injectable()
 export class BookDataService {
   endpoint = 'http://localhost:4730';
 
-  constructor(
-    private http: HttpClient,
-    private state: TransferState) {}
+  constructor(private http: HttpClient) {}
 
   getBooks(): Observable<Book[]> {
-    const books = this.state.get(BOOKS_KEY, null as any);
-
-    if (books) {
-      return of(books);
-    }
-
-    return this.http
-      .get<Book[]>(`${this.endpoint}/books`)
-      .pipe(tap(books => this.state.set(BOOKS_KEY, books as any)));
+    return this.http.get<Book[]>(`${this.endpoint}/books`);
   }
 
   getBookByIsbn(isbn: string): Observable<Book> {
-
-    return this.http
-      .get<Book>(`${this.endpoint}/books/${isbn}`)
-      .pipe(
-        map(book => {
-          book.title = book.title + ' MAPPED';
-          return book;
-        }),
-        catchError(err => {
-          // import { _throw } from 'rxjs/observable/throw';
-          return _throw({
-            message: `Book ${isbn} could not be loaded`
-          });
-        })
-      );
+    return this.http.get<Book>(`${this.endpoint}/books/${isbn}`).pipe(
+      map(book => {
+        book.title = book.title + ' MAPPED';
+        return book;
+      }),
+      catchError(err => {
+        // import { _throw } from 'rxjs/observable/throw';
+        return _throw({
+          message: `Book ${isbn} could not be loaded`
+        });
+      })
+    );
   }
 }

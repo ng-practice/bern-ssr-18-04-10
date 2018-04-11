@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
     // The application ID can be any identifier which is unique on
     // the page.
     BrowserModule.withServerTransition({ appId: 'bern-ssr' }),
-    BrowserTransferStateModule,
     HttpClientModule,
     AppRoutingModule
   ],
