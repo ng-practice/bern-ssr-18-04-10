@@ -4,6 +4,14 @@
 This project follows the setup instructions of the [Angular CLI Wiki](https://github.com/angular/angular-cli/wiki/stories-universal-rendering).
 Check this article out if you want to know how every thing is put together.
 
+## Before you start
+
+You have to start a little HTTP-API before you are able to see the apps working correctly.
+
+```
+yarn api
+```
+
 ## Universal
 
 ```bash
