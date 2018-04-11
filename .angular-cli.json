@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "bern-ssr"
+    "name": "bern-universal"
   },
   "apps": [
     {
@@ -43,7 +43,7 @@
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "serviceWorker": true,
+      "serviceWorker": false,
       "styles": [
         "styles.css"
       ],
